@@ -1,7 +1,7 @@
 import discord
 import random
 import os
-
+import json
 
 client = discord.Client()
 answers = ['хд', 'xd', 'xdddddd', 'xdxd', 'хдхдхд']
@@ -22,6 +22,6 @@ async def on_message(message):
             with open(f'files/{file}', 'rb') as f:
                 picture = discord.File(f)
                 await message.channel.send(file=picture)
-
-client.run('OTIwOTQxNDQ3ODU3OTYzMDI5.Ybrrjw.9YQ6VMrL5g5-OUGIR9XXsOD8vZ8')
-
+token_file = open('config.json', 'r')
+client.run(json.loads(token_file.read()).get('token'))
+token_file.close()
